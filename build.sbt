@@ -11,5 +11,3 @@ publishMavenStyle := true
 crossPaths       := false
 
 autoScalaLibrary := false
-
-libraryDependencies += "net.sourceforge.tess4j" % "tess4j" % "1.3.0"
