@@ -1,4 +1,4 @@
-package src.main.java.preprocessing;
+package preprocessing;
 
 /**
  * Interface for Postprocessing Purpose

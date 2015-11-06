@@ -1,10 +1,9 @@
-package src.main.java.analyse;
+package analyse;
 
-import src.main.java.postprocessing.PreProcessor;
-import src.main.java.preprocessing.PostProcessor;
+import postprocessing.PreProcessor;
+import preprocessing.PostProcessor;
 
 import java.awt.*;
-import java.util.List;
 
 /**
  * Created by FRudi on 06.11.2015.

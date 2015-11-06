@@ -1,8 +1,8 @@
-package src.main.java.control;
+package control;
 
-import src.main.java.analyse.AnalyseController;
-import src.main.java.postprocessing.PreProcessor;
-import src.main.java.preprocessing.PostProcessor;
+import analyse.AnalyseController;
+import postprocessing.PreProcessor;
+import preprocessing.PostProcessor;
 
 import java.awt.*;
 import java.util.ArrayList;
