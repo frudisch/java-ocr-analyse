@@ -11,3 +11,7 @@ publishMavenStyle := true
 crossPaths       := false
 
 autoScalaLibrary := false
+
+libraryDependencies ++= Seq(
+  "org.languagetool" % "language-en" % "3.1"
+)

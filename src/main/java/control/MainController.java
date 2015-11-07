@@ -1,8 +1,8 @@
 package control;
 
 import analyse.AnalyseController;
-import postprocessing.PreProcessor;
-import preprocessing.PostProcessor;
+import postprocessing.PostProcessor;
+import preprocessing.PreProcessor;
 
 import java.awt.*;
 import java.util.ArrayList;

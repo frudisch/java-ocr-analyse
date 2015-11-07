@@ -1,8 +1,5 @@
 package analyse;
 
-import postprocessing.PreProcessor;
-import preprocessing.PostProcessor;
-
 import java.awt.*;
 
 /**

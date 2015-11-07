@@ -7,8 +7,9 @@ import java.awt.*;
  *
  * Created by FRudi on 06.11.2015.
  */
-public interface PreProcessor {
+public interface PostProcessor {
 
-    Image process(Image image);
+    String process(String extractedText);
 
 }
+
