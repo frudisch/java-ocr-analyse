@@ -35,7 +35,6 @@
     <orderEntry type="library" name="SBT: net.java.dev.jna:jna:4.1.0:jar" level="project" />
     <orderEntry type="library" name="SBT: net.sourceforge.segment:segment:1.4.2:jar" level="project" />
     <orderEntry type="library" name="SBT: org.apache.lucene:lucene-backward-codecs:5.2.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.lucene:lucene-core:5.2.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.apache.opennlp:opennlp-tools:1.6.0:jar" level="project" />
     <orderEntry type="library" name="SBT: org.carrot2:morfologik-fsa:1.10.0:jar" level="project" />
     <orderEntry type="library" name="SBT: org.carrot2:morfologik-speller:1.10.0:jar" level="project" />
@@ -43,5 +42,8 @@
     <orderEntry type="library" name="SBT: org.languagetool:language-en:3.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.languagetool:languagetool-core:3.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.7.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.lucene:lucene-core:5.3.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.lucene:lucene-analyzers:3.6.2:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.lucene:lucene-spellchecker:3.6.2:jar" level="project" />
   </component>
 </module>
