@@ -1,5 +1,7 @@
 package analyse;
 
+import control.result.Result;
+
 import java.awt.*;
 
 /**
@@ -11,7 +13,7 @@ public class AnalyseController {
 
     }
 
-    public String analyse(Image image) {
+    public String analyse(Image image, Result rc) {
         return null;
     }
 }

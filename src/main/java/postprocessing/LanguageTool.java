@@ -1,5 +1,6 @@
 package postprocessing;
 
+import control.result.Result;
 import org.languagetool.JLanguageTool;
 import org.languagetool.language.AmericanEnglish;
 import org.languagetool.rules.Rule;
@@ -14,7 +15,7 @@ import java.util.StringJoiner;
 /**
  * Created by FRudi on 07.11.2015.
  */
-public class LanguageTool implements PostProcessor{
+public class LanguageTool extends PostProcessor{
 
     private final JLanguageTool lt;
 
@@ -23,11 +24,11 @@ public class LanguageTool implements PostProcessor{
     }
 
     @Override
-    public String process(String extractedText) {
+    public void process(Result result) {
         String rc = "";
         List<RuleMatch> matches = null;
         try {
-            matches = lt.check(extractedText);
+            matches = lt.check("");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,10 +41,13 @@ public class LanguageTool implements PostProcessor{
                     match.getSuggestedReplacements());
         }
 
-        return rc;
+    }
+
+    @Override
+    int getRanking() {
+        return 0;
     }
 
     public static void main(String[] args){
-        new LanguageTool().process("A santance wlth a erorr in the Hitchhiker's Guide tot he Galxy");
     }
 }

@@ -5,8 +5,14 @@ import java.awt.*;
 /**
  * Created by FRudi on 07.11.2015.
  */
-public interface PreProcessor {
+public abstract class PreProcessor implements Comparable<PreProcessor>{
 
-    Image process(Image image);
+    abstract int getRanking();
 
+    public abstract Image process(Image image);
+
+    @Override
+    public int compareTo(PreProcessor o){
+        return getRanking() > o.getRanking()? 1 : 0;
+    }
 }

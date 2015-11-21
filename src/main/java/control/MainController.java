@@ -1,11 +1,15 @@
 package control;
 
 import analyse.AnalyseController;
+import control.configuration.LayoutConfiguration;
+import control.configuration.LayoutFragment;
+import control.result.Result;
 import postprocessing.PostProcessor;
 import preprocessing.PreProcessor;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,51 +18,37 @@ import java.util.List;
 public class MainController {
 
     private final AnalyseController analyser;
-    private List<PreProcessor> preProcessor;
-    private List<PostProcessor> postProcessor;
 
     public MainController(){
         analyser = new AnalyseController();
     }
 
-    private void analysePicture(String s) {
-        Image temp = null;
-        for (PreProcessor preProc: preProcessor) {
-            preProc.process(temp);
+    public Result analyse (Image image, LayoutConfiguration configuration){
+        Result rc = new Result();
+
+        for (LayoutFragment fragment: configuration.getFragments()) {
+            List<PreProcessor> preProcessor = getPreProcessorFromTypes(fragment);
+            Collections.sort(preProcessor);
+
+            for (PreProcessor processor: preProcessor) {
+                processor.process(image);
+            }
+
+            analyser.analyse(image, rc);
+
+            List<PostProcessor> postProcessor = getPostProcessorFromTypes(fragment);
+            Collections.sort(postProcessor);
+
+            for (PostProcessor processor: postProcessor) {
+                processor.process(rc);
+            }
         }
-        String analysedText =  analyser.analyse(temp);
-        for(PostProcessor postProc: postProcessor){
-            analysedText = postProc.process(analysedText);
-        }
 
+        return rc;
     }
 
-    private void analysePicture(List<PreProcessor> preProcessor, List<PostProcessor> postProcessor, String s) {
-        setPreProcessor(preProcessor);
-        setPostProcessor(postProcessor);
-        analysePicture(s);
-    }
-
-    public List<PostProcessor> getPostProcessor() {
-        return postProcessor;
-    }
-
-    public void setPostProcessor(List<PostProcessor> postProcessor) {
-        this.postProcessor = postProcessor;
-    }
-
-    public List<PreProcessor> getPreProcessor() {
-        return preProcessor;
-    }
-
-    public void setPreProcessor(List<PreProcessor> preProcessor) {
-        this.preProcessor = preProcessor;
-    }
 
     public static void main(String[] args){
         MainController controller = new MainController();
-        controller.setPreProcessor(new ArrayList<>());
-        controller.setPostProcessor(new ArrayList<>());
-        controller.analysePicture("");
     }
 }

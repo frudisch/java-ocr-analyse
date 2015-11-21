@@ -1,5 +1,7 @@
 package postprocessing;
 
+import control.result.Result;
+
 import java.awt.*;
 
 /**
@@ -7,9 +9,15 @@ import java.awt.*;
  *
  * Created by FRudi on 06.11.2015.
  */
-public interface PostProcessor {
+public abstract class PostProcessor implements Comparable<PostProcessor>{
 
-    String process(String extractedText);
+    public abstract void process(Result rc);
 
+    abstract int getRanking();
+
+    @Override
+    public int compareTo(PostProcessor o){
+        return getRanking() > o.getRanking()? 1 : 0;
+    }
 }
 
