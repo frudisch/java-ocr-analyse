@@ -15,5 +15,6 @@ autoScalaLibrary := false
 libraryDependencies ++= Seq(
   "org.languagetool" % "language-en" % "3.1",
   "org.apache.lucene" % "lucene-core" % "5.3.1",
-  "org.apache.lucene" % "lucene-spellchecker" % "3.6.2"
+  "org.apache.lucene" % "lucene-spellchecker" % "3.6.2",
+  "net.sourceforge.tess4j" % "tess4j" % "2.0.1"
 )

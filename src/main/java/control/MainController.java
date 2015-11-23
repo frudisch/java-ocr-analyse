@@ -1,6 +1,6 @@
 package control;
 
-import analyse.AnalyseController;
+import analyse.OCRAnalyser;
 import control.configuration.LayoutConfiguration;
 import control.configuration.LayoutFragment;
 import control.result.Result;
@@ -8,7 +8,6 @@ import postprocessing.PostProcessor;
 import preprocessing.PreProcessor;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,31 +16,33 @@ import java.util.List;
  */
 public class MainController {
 
-    private final AnalyseController analyser;
+    private final OCRAnalyser analyser;
 
     public MainController(){
-        analyser = new AnalyseController();
+        analyser = new OCRAnalyser();
     }
 
-    public Result analyse (Image image, LayoutConfiguration configuration){
+    public Result analyse (Image image, LayoutConfiguration configuration) {
         Result rc = new Result();
+        ImageCutter cutter = new ImageCutter();
 
-        for (LayoutFragment fragment: configuration.getFragments()) {
-            List<PreProcessor> preProcessor = getPreProcessorFromTypes(fragment);
-            Collections.sort(preProcessor);
+        List<PreProcessor> preProcessor = configuration.getPreProcessors();
+        Collections.sort(preProcessor);
+        for (PreProcessor processor : preProcessor) {
+            processor.process(image);
+        }
 
-            for (PreProcessor processor: preProcessor) {
-                processor.process(image);
-            }
+        for (LayoutFragment fragment: configuration.getFragments()){
+            Image cutted = cutter.process(image, fragment);
 
-            analyser.analyse(image, rc);
+            //TODO
+            fragment.getType().getAnalyser().analyse();
+        }
 
-            List<PostProcessor> postProcessor = getPostProcessorFromTypes(fragment);
-            Collections.sort(postProcessor);
-
-            for (PostProcessor processor: postProcessor) {
-                processor.process(rc);
-            }
+        List<PostProcessor> postProcessor = configuration.getPostProcessors();
+        Collections.sort(postProcessor);
+        for (PostProcessor processor : postProcessor) {
+            processor.process(rc);
         }
 
         return rc;

@@ -7,7 +7,28 @@ import java.awt.*;
  */
 public abstract class PreProcessor implements Comparable<PreProcessor>{
 
-    abstract int getRanking();
+    private double value;
+    private int ranking;
+
+    public PreProcessor(int ranking){
+        setRanking(ranking);
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
 
     public abstract Image process(Image image);
 

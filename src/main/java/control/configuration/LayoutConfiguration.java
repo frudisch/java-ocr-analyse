@@ -1,5 +1,8 @@
 package control.configuration;
 
+import postprocessing.PostProcessor;
+import preprocessing.PreProcessor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,6 +14,8 @@ public class LayoutConfiguration {
 
     private List<LayoutFragment> fragments;
     private Locale isoLanguage;
+    private List<PreProcessor> preProcessors;
+    private List<PostProcessor> postProcessors;
 
     /*
     Standard Configuration with empty fragments and german language
@@ -21,9 +26,11 @@ public class LayoutConfiguration {
         setIsoLanguage(Locale.GERMAN);
     }
 
-    public LayoutConfiguration(List<LayoutFragment> fragments, Locale isoLanguage){
+    public LayoutConfiguration(List<LayoutFragment> fragments, Locale isoLanguage, List<PreProcessor> preProcessors, List<PostProcessor> postProcessors){
         setFragments(fragments);
         setIsoLanguage(isoLanguage);
+        setPreProcessors(preProcessors);
+        setPostProcessors(postProcessors);
     }
 
     public List<LayoutFragment> getFragments() {
@@ -40,5 +47,21 @@ public class LayoutConfiguration {
 
     public void setIsoLanguage(Locale isoLanguage) {
         this.isoLanguage = isoLanguage;
+    }
+
+    public List<PreProcessor> getPreProcessors() {
+        return preProcessors;
+    }
+
+    public void setPreProcessors(List<PreProcessor> preProcessors) {
+        this.preProcessors = preProcessors;
+    }
+
+    public List<PostProcessor> getPostProcessors() {
+        return postProcessors;
+    }
+
+    public void setPostProcessors(List<PostProcessor> postProcessors) {
+        this.postProcessors = postProcessors;
     }
 }

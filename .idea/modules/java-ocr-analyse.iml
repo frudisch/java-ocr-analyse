@@ -45,5 +45,18 @@
     <orderEntry type="library" name="SBT: org.apache.lucene:lucene-core:5.3.1:jar" level="project" />
     <orderEntry type="library" name="SBT: org.apache.lucene:lucene-analyzers:3.6.2:jar" level="project" />
     <orderEntry type="library" name="SBT: org.apache.lucene:lucene-spellchecker:3.6.2:jar" level="project" />
+    <orderEntry type="module-library">
+      <library name="SBT: net.sourceforge.tess4j:tess4j:2.0.1:jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.tess4j/tess4j/jars/tess4j-2.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.tess4j/tess4j/docs/tess4j-2.0.1-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.tess4j/tess4j/srcs/tess4j-2.0.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
