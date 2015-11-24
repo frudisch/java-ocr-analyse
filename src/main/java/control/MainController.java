@@ -8,6 +8,7 @@ import postprocessing.PostProcessor;
 import preprocessing.PreProcessor;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,9 +23,8 @@ public class MainController {
         analyser = new OCRAnalyser();
     }
 
-    public Result analyse (Image image, LayoutConfiguration configuration) {
+    public Result analyse (BufferedImage image, LayoutConfiguration configuration) {
         Result rc = new Result();
-        ImageCutter cutter = new ImageCutter();
 
         List<PreProcessor> preProcessor = configuration.getPreProcessors();
         Collections.sort(preProcessor);
@@ -33,10 +33,16 @@ public class MainController {
         }
 
         for (LayoutFragment fragment: configuration.getFragments()){
-            Image cutted = cutter.process(image, fragment);
+            Rectangle rectangle = new Rectangle();
 
-            //TODO
-            fragment.getType().getAnalyser().analyse();
+            int xStart = (int) fragment.getxStart() * image.getWidth();
+            int yStart = (int) fragment.getyStart() * image.getHeight();
+            int xEnd = (int) fragment.getxEnd() * image.getWidth();
+            int yEnd = (int) fragment.getyEnd() * image.getHeight();
+
+            rectangle.setBounds(xStart, yStart, xEnd - xStart, yEnd - yStart);
+
+            fragment.getType().getAnalyser().analyse(image, rectangle);
         }
 
         List<PostProcessor> postProcessor = configuration.getPostProcessors();

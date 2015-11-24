@@ -1,5 +1,7 @@
 package analyse;
 
+import control.result.MetaData;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -18,6 +20,14 @@ public class MetaDataAnalyser implements Analyser {
     public MetaData analyse(BufferedImage image, Rectangle rectangle) {
         String result = ocrAnalyser.analyse(image, rectangle);
 
-        return null;
+        return process(result);
+    }
+
+    private MetaData process(String result) {
+        MetaData md = new MetaData();
+
+
+
+        return md;
     }
 }
