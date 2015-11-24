@@ -24,6 +24,8 @@ public class LayoutConfiguration {
     public LayoutConfiguration(){
         setFragments(new ArrayList<>());
         setIsoLanguage(Locale.GERMAN);
+        setPreProcessors(new ArrayList<>());
+        setPostProcessors(new ArrayList<>());
     }
 
     public LayoutConfiguration(List<LayoutFragment> fragments, Locale isoLanguage, List<PreProcessor> preProcessors, List<PostProcessor> postProcessors){
