@@ -10,6 +10,9 @@ public class ImageExtractor implements Analyser<BufferedImage> {
 
     @Override
     public BufferedImage analyse(BufferedImage image, Rectangle rectangle) {
-        return null;
+        return image.getSubimage((int) rectangle.getX(),
+                (int) rectangle.getY(),
+                (int) (rectangle.getX() + rectangle.getWidth()),
+                (int) (rectangle.getY() + rectangle.getHeight()));
     }
 }

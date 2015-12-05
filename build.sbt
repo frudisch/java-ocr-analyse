@@ -14,5 +14,5 @@ autoScalaLibrary := false
 
 libraryDependencies ++= Seq(
   "org.languagetool" % "language-en" % "3.1",
-  "net.sourceforge.tess4j" % "tess4j" % "2.0.1"
+  "net.sourceforge.tess4j" % "tess4j" % "1.5.0"
 )
