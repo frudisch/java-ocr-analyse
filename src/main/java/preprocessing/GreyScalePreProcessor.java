@@ -1,6 +1,7 @@
 package preprocessing;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by florian on 23.11.15.
@@ -12,7 +13,7 @@ public class GreyScalePreProcessor extends PreProcessor {
     }
 
     @Override
-    public Image process(Image image) {
+    public BufferedImage process(BufferedImage image) {
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package preprocessing;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by FRudi on 07.11.2015.
@@ -30,7 +31,7 @@ public abstract class PreProcessor implements Comparable<PreProcessor>{
         this.ranking = ranking;
     }
 
-    public abstract Image process(Image image);
+    public abstract BufferedImage process(BufferedImage image);
 
     @Override
     public int compareTo(PreProcessor o){

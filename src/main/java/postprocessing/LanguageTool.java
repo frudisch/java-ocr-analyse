@@ -1,11 +1,6 @@
 package postprocessing;
 
 import control.result.Result;
-import org.languagetool.JLanguageTool;
-import org.languagetool.language.AmericanEnglish;
-import org.languagetool.rules.Rule;
-import org.languagetool.rules.RuleMatch;
-import org.languagetool.rules.spelling.SpellingCheckRule;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -16,7 +11,7 @@ import java.util.StringJoiner;
  * Created by FRudi on 07.11.2015.
  */
 public class LanguageTool extends PostProcessor{
-
+/*
     private final JLanguageTool lt;
 
     public LanguageTool(){
@@ -47,7 +42,16 @@ public class LanguageTool extends PostProcessor{
     int getRanking() {
         return 0;
     }
+*/
+@Override
+public void process(Result result) {
 
+}
+
+    @Override
+    int getRanking() {
+        return 0;
+    }
     public static void main(String[] args){
     }
 }
