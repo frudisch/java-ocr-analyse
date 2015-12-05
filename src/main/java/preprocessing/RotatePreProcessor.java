@@ -16,23 +16,23 @@ public class RotatePreProcessor extends PreProcessor {
     }
 
     @Override
-    public BufferedImage process(BufferedImage img) {
+    public BufferedImage process(BufferedImage image) {
         double angle = getValue();
         double sin = Math.abs(Math.sin(Math.toRadians(angle)));
         double cos = Math.abs(Math.cos(Math.toRadians(angle)));
 
-        int imgWidth = img.getWidth(null);
-        int imgHeight = img.getHeight(null);
+        int imgWidth = image.getWidth(null);
+        int imgHeight = image.getHeight(null);
         int newWidth = (int) Math.floor(imgWidth * cos + imgHeight * sin);
         int newHeigth = (int) Math.floor(imgHeight * cos + imgWidth * sin);
 
-        BufferedImage newImage = new BufferedImage(newWidth, newHeigth, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = newImage.createGraphics();
+        BufferedImage output = new BufferedImage(newWidth, newHeigth, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = output.createGraphics();
         g.translate((newWidth - imgWidth) / 2, (newHeigth - imgHeight) / 2);
         g.rotate(Math.toRadians(angle), imgWidth / 2, imgHeight / 2);
-        g.drawRenderedImage(img, null);
+        g.drawRenderedImage(image, null);
         g.dispose();
-        return newImage;
+        return output;
     }
 
     public static void main(String[] args){
