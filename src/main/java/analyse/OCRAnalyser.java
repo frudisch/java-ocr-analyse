@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by FRudi on 06.11.2015.
  */
-public class OCRAnalyser implements Analyser{
+public class OCRAnalyser implements Analyser<String>{
 
     private ITesseract tesseract;
 
@@ -22,7 +22,7 @@ public class OCRAnalyser implements Analyser{
     @Override
     public String analyse(BufferedImage image, Rectangle rectangle) {
         try {
-            return tesseract.doOCR(image,rectangle);
+            return tesseract.doOCR(image, rectangle);
         } catch (TesseractException e) {
             e.printStackTrace();
             return "";

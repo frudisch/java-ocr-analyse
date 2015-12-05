@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by florian on 23.11.15.
  */
-public interface Analyser {
+public interface Analyser <T> {
 
-    <T> T analyse(BufferedImage image, Rectangle rectangle);
+    T analyse(BufferedImage image, Rectangle rectangle);
 }
