@@ -14,9 +14,7 @@ public abstract class PreProcessingType {
     private static final int INCREASE_CONTRAST_RANKING = 200;
     public static PreProcessor INCREASE_CONTRAST = new ContrastPreProcessor(INCREASE_CONTRAST_RANKING);
 
-    // black and white tonwertkorrektur
+    private static final int INCREASE_BRIGHTNESS_RANKING = 300;
+    public static PreProcessor INCREASE_BRIGHTNESS = new BrightnessPreProcessor(INCREASE_BRIGHTNESS_RANKING);
 
-    // brightness
-
-    //
 }
