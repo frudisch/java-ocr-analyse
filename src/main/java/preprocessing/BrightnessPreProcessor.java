@@ -4,10 +4,17 @@ import ij.ImagePlus;
 import ij.process.ColorProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import ij.process.LUT;
+import net.sourceforge.jiu.color.adjustment.Brightness;
+import net.sourceforge.jiu.color.adjustment.Contrast;
+import net.sourceforge.jiu.data.PixelImage;
+import net.sourceforge.jiu.gui.awt.BufferedRGB24Image;
+import net.sourceforge.jiu.gui.awt.ImageCreator;
+import net.sourceforge.jiu.ops.MissingParameterException;
+import net.sourceforge.jiu.ops.WrongParameterException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -23,11 +30,23 @@ public class BrightnessPreProcessor extends PreProcessor {
     @Override
     public BufferedImage process(BufferedImage image) {
 
-        double brightness = getValue()/100;
-        float scalfactor = (float) (1.0f + brightness);
-        System.out.println(scalfactor);
-        RescaleOp rescaleOp = new RescaleOp(1.6f, 0, null); //decrease contrast
-        rescaleOp.filter(image,image);
+        BufferedRGB24Image bufferedRGB24Image = new BufferedRGB24Image(image);
+
+        int scalefactor = (int) getValue();
+        Brightness brightness = new Brightness();
+        brightness.setInputImage(bufferedRGB24Image);
+        brightness.setBrightness(scalefactor);
+
+        try {
+            brightness.process();
+            PixelImage pixelImage = brightness.getOutputImage();
+            return ImageCreator.convertToAwtBufferedImage(pixelImage);
+
+        } catch (MissingParameterException e) {
+            e.printStackTrace();
+        } catch (WrongParameterException e) {
+            e.printStackTrace();
+        }
 
         return image;
     }
@@ -37,12 +56,12 @@ public class BrightnessPreProcessor extends PreProcessor {
     public static void main(String[] args){
         PreProcessor test = PreProcessingType.INCREASE_BRIGHTNESS;
 
-        test.setValue(-40.0);
+        test.setValue(-60.0);
 
         try {
-            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/Wikipedia_Test_Artikel.PNG")));
+            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/input.png")));
 
-            ImageIO.write(rc, "png", new File("./src/main/resources/test_files/test.png"));
+            ImageIO.write(rc, "png", new File("./src/main/resources/test_files/output.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

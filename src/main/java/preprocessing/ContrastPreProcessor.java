@@ -1,10 +1,12 @@
 package preprocessing;
 
-import ij.ImagePlus;
-import ij.plugin.ContrastEnhancer;
-import ij.process.ColorProcessor;
-import ij.process.FloatProcessor;
-import ij.process.ImageProcessor;
+import net.sourceforge.jiu.color.adjustment.Brightness;
+import net.sourceforge.jiu.color.adjustment.Contrast;
+import net.sourceforge.jiu.data.PixelImage;
+import net.sourceforge.jiu.gui.awt.BufferedRGB24Image;
+import net.sourceforge.jiu.gui.awt.ImageCreator;
+import net.sourceforge.jiu.ops.MissingParameterException;
+import net.sourceforge.jiu.ops.WrongParameterException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -23,28 +25,25 @@ public class ContrastPreProcessor extends PreProcessor {
     @Override
     public BufferedImage process(BufferedImage image) {
 
-        ImagePlus im = new ImagePlus("Image", image);
-        ContrastEnhancer enh = new ContrastEnhancer();
-        enh.stretchHistogram(im, getValue());
-        return im.getBufferedImage();
+        BufferedRGB24Image bufferedRGB24Image = new BufferedRGB24Image(image);
+        
+        int scalefactor = (int) getValue();
+        Contrast contrast = new Contrast();
+        contrast.setInputImage(bufferedRGB24Image);
+        contrast.setContrast(scalefactor);
 
+        try {
+            contrast.process();
+            PixelImage pixelImage = contrast.getOutputImage();
+            return ImageCreator.convertToAwtBufferedImage(pixelImage);
 
-        /*
-        ImagePlus imagePlus = new ImagePlus("Image", image);
-        ImageProcessor imageProcessor = imagePlus.getProcessor();
-
-        ColorProcessor temp = (ColorProcessor) imageProcessor;
-
-        float[] roi = new float[image.getHeight()*image.getWidth()];
-        for(int i = 0; i<image.getHeight()*image.getWidth(); i++){
-            roi[i] = 25;
+        } catch (MissingParameterException e) {
+            e.printStackTrace();
+        } catch (WrongParameterException e) {
+            e.printStackTrace();
         }
 
-        temp.setBrightness(new FloatProcessor(image.getWidth(), image.getHeight(), roi));
-
-
-        return temp.getBufferedImage();
-        */
+        return image;
     }
 
 
@@ -55,9 +54,9 @@ public class ContrastPreProcessor extends PreProcessor {
         test.setValue(50.0);
 
         try {
-            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/00_USA_ROADTRIP.png")));
+            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/input.png")));
 
-            ImageIO.write(rc, "png", new File("./src/main/resources/test_files/test.png"));
+            ImageIO.write(rc, "png", new File("./src/main/resources/test_files/output.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
