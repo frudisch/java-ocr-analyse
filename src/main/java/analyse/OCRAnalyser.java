@@ -19,6 +19,8 @@ public class OCRAnalyser implements Analyser<String>{
 
     public OCRAnalyser(){
         tesseract = new Tesseract();
+
+        tesseract.setLanguage("deu");
     }
 
     @Override
