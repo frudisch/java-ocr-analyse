@@ -1,5 +1,10 @@
 package preprocessing;
 
+import ij.ImagePlus;
+import ij.process.ColorProcessor;
+import ij.process.FloatProcessor;
+import ij.process.ImageProcessor;
+import ij.process.LUT;
 import net.sourceforge.jiu.color.adjustment.Brightness;
 import net.sourceforge.jiu.color.adjustment.Contrast;
 import net.sourceforge.jiu.data.PixelImage;
@@ -14,11 +19,11 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Benedikt Linke on 23.11.15.
+ * Created by Benedikt Linke on 07.12.15.
  */
-public class ContrastPreProcessor extends PreProcessor {
+public class BrightnessPreProcessor extends PreProcessor {
 
-    public ContrastPreProcessor(int ranking) {
+    public BrightnessPreProcessor(int ranking) {
         super(ranking);
     }
 
@@ -26,15 +31,15 @@ public class ContrastPreProcessor extends PreProcessor {
     public BufferedImage process(BufferedImage image) {
 
         BufferedRGB24Image bufferedRGB24Image = new BufferedRGB24Image(image);
-        
+
         int scalefactor = (int) getValue();
-        Contrast contrast = new Contrast();
-        contrast.setInputImage(bufferedRGB24Image);
-        contrast.setContrast(scalefactor);
+        Brightness brightness = new Brightness();
+        brightness.setInputImage(bufferedRGB24Image);
+        brightness.setBrightness(scalefactor);
 
         try {
-            contrast.process();
-            PixelImage pixelImage = contrast.getOutputImage();
+            brightness.process();
+            PixelImage pixelImage = brightness.getOutputImage();
             return ImageCreator.convertToAwtBufferedImage(pixelImage);
 
         } catch (MissingParameterException e) {
@@ -49,9 +54,9 @@ public class ContrastPreProcessor extends PreProcessor {
 
 
     public static void main(String[] args){
-        PreProcessor test = PreProcessingType.INCREASE_CONTRAST;
+        PreProcessor test = PreProcessingType.INCREASE_BRIGHTNESS;
 
-        test.setValue(50.0);
+        test.setValue(-60.0);
 
         try {
             BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/input.png")));
