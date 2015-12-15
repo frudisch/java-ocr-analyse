@@ -26,7 +26,16 @@ public class MetaDataAnalyser implements Analyser<MetaData> {
     private MetaData process(String result) {
         MetaData md = new MetaData();
 
+        String[] splittedArray = result.split(":");
 
+        for(int i = 0; i<splittedArray.length; i++){
+            String key, value;
+
+            key = splittedArray[i].split(" ")[splittedArray[i].split(" ").length - 1];
+            value = splittedArray[i + 1].split(" ")[0];
+
+            md.addValue(key, value);
+        }
 
         return md;
     }

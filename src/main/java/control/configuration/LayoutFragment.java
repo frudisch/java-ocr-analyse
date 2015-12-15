@@ -15,6 +15,10 @@ public class LayoutFragment {
 
     private AnalyseType type;
 
+    public LayoutFragment(){
+
+    }
+
     public LayoutFragment(double xStart, double xEnd, double yStart, double yEnd, AnalyseType type) {
         this.xStart = xStart;
         this.xEnd = xEnd;

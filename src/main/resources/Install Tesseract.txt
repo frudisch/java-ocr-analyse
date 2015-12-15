@@ -1,0 +1,35 @@
+INSTALL/Compiling Tesseract:
+
+http://code.google.com/p/tesseract-ocr/wiki/Compiling
+
+
+git clone https://code.google.com/p/tesseract-ocr/
+
+apt-get install autoconf automake libtool
+
+apt-get install libpng12-dev
+
+apt-get install libjpeg62-dev
+
+apt-get install libtiff4-dev
+
+apt-get install zlib1g-dev
+
+apt-get install libleptonica-dev
+
+cd tesseract-ocr
+
+./autogen.sh
+
+./configure
+
+DOWNLOAD http://www.leptonica.org/download.html
+
+=> ./configure
+=> make
+=> make install
+=> ldconfig
+
+make
+
+
