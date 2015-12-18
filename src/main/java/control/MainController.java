@@ -15,8 +15,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by FRudi on 06.11.2015.
@@ -78,19 +80,24 @@ public class MainController {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(new File("./src/main/resources/test_files/Wikipedia_Test_Artikel.PNG"));
+            image = ImageIO.read(new File("./src/main/resources/test_files/test_300_dpi.jpg"));
+            //image = ImageIO.read(new File("./src/main/resources/test_files/TUEV Angebot 2.png"));
+            //image = ImageIO.read(URI.create("https://owncloud.v22015042759824376.yourvserver.net/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=589&a=true&file=20151218_143333_HDR.jpg&t=ZiHNPuZBZEL2k0m&scalingup=0").toURL());
+            //image = ImageIO.read(URI.create("http://favim.com/orig/201108/19/black-and-white-cool-simple-text-Favim.com-125982.jpg").toURL());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        System.out.println("image geladen!");
+
         Result result = controller.analyse(image, new LayoutConfigurationFactory()
-                .addLayoutFragment(new LayoutFragmentFactory()
+               /* .addLayoutFragment(new LayoutFragmentFactory()
                         .addXStart(0)
                         .addXEnd(0)
                         .addYStart(image.getWidth())
                         .addYEnd(image.getHeight())
                         .addType(AnalyseType.TEXT_FRAGMENT)
-                        .build())
+                        .build())*/
                 .build());
 
         System.out.println(result.getResultFragments().get(0).getResult());
