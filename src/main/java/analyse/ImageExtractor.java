@@ -1,5 +1,7 @@
 package analyse;
 
+import org.slf4j.LoggerFactory;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -10,9 +12,14 @@ public class ImageExtractor implements Analyser<BufferedImage> {
 
     @Override
     public BufferedImage analyse(BufferedImage image, Rectangle rectangle) {
+        LoggerFactory.getLogger("ocr_analyse").info("cutting: " + (int) rectangle.getX() + " " +
+                (int) rectangle.getY() + " " +
+                (int) (rectangle.getX() + rectangle.getWidth()) + " " +
+                (int) (rectangle.getY() + rectangle.getHeight()));
+
         return image.getSubimage((int) rectangle.getX(),
                 (int) rectangle.getY(),
-                (int) (rectangle.getX() + rectangle.getWidth()),
-                (int) (rectangle.getY() + rectangle.getHeight()));
+                (int) rectangle.getWidth(),
+                (int) rectangle.getHeight());
     }
 }
