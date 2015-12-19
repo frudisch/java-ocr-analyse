@@ -7,6 +7,7 @@ import control.configuration.LayoutFragment;
 import control.factories.LayoutConfigurationFactory;
 import control.factories.LayoutFragmentFactory;
 import control.result.Result;
+import org.slf4j.LoggerFactory;
 import postprocessing.PostProcessor;
 import preprocessing.PreProcessor;
 
@@ -39,6 +40,7 @@ public class MainController {
         }
 
         if(configuration.getFragments() == null || configuration.getFragments().size() == 0){
+            LoggerFactory.getLogger("ocr_analyse").info("bin im default keine angaben");
             Rectangle rectangle = new Rectangle();
 
             int xStart = 0;
@@ -48,21 +50,26 @@ public class MainController {
 
             rectangle.setBounds(xStart, yStart, xEnd - xStart, yEnd - yStart);
 
-            rc.addResultFragment(AnalyseType.TEXT_FRAGMENT.getAnalyser().analyse(image, rectangle),
-                    AnalyseType.TEXT_FRAGMENT);
+            rc.addResultFragment(AnalyseType.TEXT_FRAGMENT.getAnalyser().analyse(image, rectangle));
         }else{
             for (LayoutFragment fragment: configuration.getFragments()){
                 Rectangle rectangle = new Rectangle();
 
-                int xStart = (int) fragment.getxStart() * image.getWidth();
-                int yStart = (int) fragment.getyStart() * image.getHeight();
-                int xEnd = (int) fragment.getxEnd() * image.getWidth();
-                int yEnd = (int) fragment.getyEnd() * image.getHeight();
+                int xStart = (int) (fragment.getxStart() * image.getWidth());
+                int yStart = (int) (fragment.getyStart() * image.getHeight());
+                int xEnd = (int) (fragment.getxEnd() * image.getWidth());
+                int yEnd = (int) (fragment.getyEnd() * image.getHeight());
+
+                /*
+                int xStart = (int) fragment.getxStart();
+                int yStart = (int) fragment.getyStart();
+                int xEnd = (int) fragment.getxEnd();
+                int yEnd = (int) fragment.getyEnd();
+                */
 
                 rectangle.setBounds(xStart, yStart, xEnd - xStart, yEnd - yStart);
 
-                rc.addResultFragment(fragment.getType().getAnalyser().analyse(image, rectangle),
-                        fragment.getType());
+                rc.addResultFragment(fragment.getType().getAnalyser().analyse(image, rectangle));
             }
         }
 

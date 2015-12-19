@@ -10,7 +10,15 @@ import java.awt.image.BufferedImage;
  */
 public class MetaDataAnalyser implements Analyser<MetaData> {
 
-    private final OCRAnalyser ocrAnalyser;
+    private OCRAnalyser ocrAnalyser;
+
+    public void setOcrAnalyser(OCRAnalyser ocrAnalyser) {
+        this.ocrAnalyser = ocrAnalyser;
+    }
+
+    public OCRAnalyser getOcrAnalyser() {
+        return ocrAnalyser;
+    }
 
     public MetaDataAnalyser(){
         ocrAnalyser = new OCRAnalyser();

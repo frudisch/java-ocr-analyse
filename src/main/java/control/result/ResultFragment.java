@@ -8,7 +8,6 @@ import analyse.AnalyseType;
 public class ResultFragment<T> {
 
     private T result;
-    private AnalyseType type;
 
     public T getResult() {
         return result;
@@ -16,13 +15,5 @@ public class ResultFragment<T> {
 
     public void setResult(T result) {
         this.result = result;
-    }
-
-    public AnalyseType getType() {
-        return type;
-    }
-
-    public void setType(AnalyseType type) {
-        this.type = type;
     }
 }

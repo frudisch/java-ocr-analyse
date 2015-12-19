@@ -12,10 +12,9 @@ public class Result {
 
     private List<ResultFragment> resultFragments = new ArrayList<>();
 
-    public <T> ResultFragment<T> addResultFragment(T result, AnalyseType type){
-        ResultFragment<T> temp = new ResultFragment<T>();
+    public <T> ResultFragment<T> addResultFragment(T result){
+        ResultFragment<T> temp = new ResultFragment<>();
         temp.setResult(result);
-        temp.setType(type);
 
         addResultFragment(temp);
 
