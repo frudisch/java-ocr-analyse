@@ -12,9 +12,15 @@ public class Result {
 
     private List<ResultFragment> resultFragments = new ArrayList<>();
 
-    public <T> ResultFragment<T> addResultFragment(T result){
+    public <T> ResultFragment<T> addResultFragment(T result, double xStart, double yStart, double xEnd, double yEnd, Type type){
         ResultFragment<T> temp = new ResultFragment<>();
+
         temp.setResult(result);
+        temp.setEndX(xEnd);
+        temp.setEndY(yEnd);
+        temp.setStartX(xStart);
+        temp.setStartY(yStart);
+        temp.setType(type);
 
         addResultFragment(temp);
 

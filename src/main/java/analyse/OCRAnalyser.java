@@ -35,11 +35,13 @@ public class OCRAnalyser implements Analyser<String>{
     public String analyse(BufferedImage image, Rectangle rectangle) {
         BufferedImage cutImage = new ImageExtractor().analyse(image, rectangle);
 
+        /*
         try {
             ImageIO.write(cutImage, "png", new File("./tempPic_" + i + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
         i++;
         try {

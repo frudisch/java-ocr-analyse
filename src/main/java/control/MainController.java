@@ -1,12 +1,15 @@
 package control;
 
 import analyse.AnalyseType;
+import analyse.ImageExtractor;
+import analyse.MetaDataAnalyser;
 import analyse.OCRAnalyser;
 import control.configuration.LayoutConfiguration;
 import control.configuration.LayoutFragment;
 import control.factories.LayoutConfigurationFactory;
 import control.factories.LayoutFragmentFactory;
 import control.result.Result;
+import control.result.Type;
 import org.slf4j.LoggerFactory;
 import postprocessing.PostProcessor;
 import preprocessing.PreProcessingType;
@@ -42,16 +45,16 @@ public class MainController {
 
     public Result analyse (BufferedImage image, LayoutConfiguration configuration) {
         Result rc = new Result();
-
+/*
         try {
             List<IIOImage> list = getIIOImageList(image);
-            for (IIOImage io :
-                    list) {
+            for (IIOImage io :list) {
                 LoggerFactory.getLogger("ocr_analyse").info("in liste: " + io);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
         List<PreProcessor> preProcessor = configuration.getPreProcessors();
         Collections.sort(preProcessor);
@@ -70,7 +73,7 @@ public class MainController {
 
             rectangle.setBounds(xStart, yStart, xEnd - xStart, yEnd - yStart);
 
-            rc.addResultFragment(AnalyseType.TEXT_FRAGMENT.getAnalyser().analyse(image, rectangle));
+            rc.addResultFragment(AnalyseType.TEXT_FRAGMENT.getAnalyser().analyse(image, rectangle), 0, 0, 1, 1, Type.TEXT);
         }else{
             for (LayoutFragment fragment: configuration.getFragments()){
                 Rectangle rectangle = new Rectangle();
@@ -89,7 +92,24 @@ public class MainController {
 
                 rectangle.setBounds(xStart, yStart, xEnd - xStart, yEnd - yStart);
 
-                rc.addResultFragment(fragment.getType().getAnalyser().analyse(image, rectangle));
+                Type type;
+
+                if(fragment.getType().getAnalyser() instanceof OCRAnalyser){
+                    type = Type.TEXT;
+                }else if(fragment.getType().getAnalyser() instanceof ImageExtractor){
+                    type = Type.IMAGE;
+                }else if(fragment.getType().getAnalyser() instanceof MetaDataAnalyser) {
+                    type = Type.META;
+                }else{
+                    type = Type.TEXT;
+                }
+
+                rc.addResultFragment(fragment.getType().getAnalyser().analyse(image, rectangle),
+                        fragment.getxStart(),
+                        fragment.getyStart(),
+                        fragment.getxEnd(),
+                        fragment.getyEnd(),
+                        type);
             }
         }
 
