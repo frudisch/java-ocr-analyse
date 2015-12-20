@@ -9,14 +9,17 @@ import control.factories.LayoutFragmentFactory;
 import control.result.Result;
 import org.slf4j.LoggerFactory;
 import postprocessing.PostProcessor;
+import preprocessing.PreProcessingType;
 import preprocessing.PreProcessor;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -30,13 +33,30 @@ public class MainController {
 
     }
 
+    public List<IIOImage> getIIOImageList(BufferedImage bi) throws IOException {
+        List<IIOImage> iioImageList = new ArrayList<IIOImage>();
+        IIOImage oimage = new IIOImage(bi, null, null);
+        iioImageList.add(oimage);
+        return iioImageList;
+    }
+
     public Result analyse (BufferedImage image, LayoutConfiguration configuration) {
         Result rc = new Result();
+
+        try {
+            List<IIOImage> list = getIIOImageList(image);
+            for (IIOImage io :
+                    list) {
+                LoggerFactory.getLogger("ocr_analyse").info("in liste: " + io);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         List<PreProcessor> preProcessor = configuration.getPreProcessors();
         Collections.sort(preProcessor);
         for (PreProcessor processor : preProcessor) {
-            processor.process(image);
+            image = processor.process(image);
         }
 
         if(configuration.getFragments() == null || configuration.getFragments().size() == 0){

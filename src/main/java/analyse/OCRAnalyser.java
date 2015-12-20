@@ -7,9 +7,11 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import org.slf4j.LoggerFactory;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
 /**
@@ -21,6 +23,8 @@ public class OCRAnalyser implements Analyser<String>{
 
     private ITesseract tesseract;
 
+    int i = 0;
+
     public OCRAnalyser(){
         tesseract = new Tesseract();
 
@@ -29,10 +33,17 @@ public class OCRAnalyser implements Analyser<String>{
 
     @Override
     public String analyse(BufferedImage image, Rectangle rectangle) {
-        image = new ImageExtractor().analyse(image, rectangle);
-        LoggerFactory.getLogger("ocr_analyse").info("analyse: " + image + " xStart: " +rectangle.getX() + " yStart: " + rectangle.getY() + " width: " + rectangle.getWidth() + " height: " + rectangle.getHeight());
+        BufferedImage cutImage = new ImageExtractor().analyse(image, rectangle);
+
         try {
-            return tesseract.doOCR(image);
+            ImageIO.write(cutImage, "png", new File("./tempPic_" + i + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        i++;
+        try {
+            return tesseract.doOCR(cutImage);
         } catch (TesseractException e) {
             e.printStackTrace();
             return "";

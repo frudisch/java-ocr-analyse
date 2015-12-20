@@ -12,9 +12,10 @@ crossPaths       := false
 
 autoScalaLibrary := false
 
+unmanagedJars in Compile := (baseDirectory.value ** "*.jar").classpath
+
 libraryDependencies ++= Seq(
   "org.languagetool" % "language-en" % "3.1",
   "net.sourceforge.tess4j" % "tess4j" % "2.0.1",
-  "gov.nih.imagej" % "imagej" % "1.47",
   "ch.qos.logback" % "logback-classic" % "1.1.3"
 )

@@ -1,12 +1,12 @@
 package preprocessing;
 
-import net.sourceforge.jiu.color.adjustment.Brightness;
 import net.sourceforge.jiu.color.adjustment.Contrast;
 import net.sourceforge.jiu.data.PixelImage;
 import net.sourceforge.jiu.gui.awt.BufferedRGB24Image;
 import net.sourceforge.jiu.gui.awt.ImageCreator;
 import net.sourceforge.jiu.ops.MissingParameterException;
 import net.sourceforge.jiu.ops.WrongParameterException;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,7 +24,7 @@ public class ContrastPreProcessor extends PreProcessor {
 
     @Override
     public BufferedImage process(BufferedImage image) {
-
+        LoggerFactory.getLogger("ocr_analyse").info("change contrast: " + getValue());
         BufferedRGB24Image bufferedRGB24Image = new BufferedRGB24Image(image);
         
         int scalefactor = (int) getValue();
@@ -51,10 +51,10 @@ public class ContrastPreProcessor extends PreProcessor {
     public static void main(String[] args){
         PreProcessor test = PreProcessingType.INCREASE_CONTRAST;
 
-        test.setValue(50.0);
+        test.setValue(52.0);
 
         try {
-            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/input.png")));
+            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/test_300_dpi.jpg")));
 
             ImageIO.write(rc, "png", new File("./src/main/resources/test_files/output.png"));
         } catch (IOException e) {

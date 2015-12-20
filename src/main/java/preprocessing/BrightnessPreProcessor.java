@@ -1,17 +1,12 @@
 package preprocessing;
 
-import ij.ImagePlus;
-import ij.process.ColorProcessor;
-import ij.process.FloatProcessor;
-import ij.process.ImageProcessor;
-import ij.process.LUT;
 import net.sourceforge.jiu.color.adjustment.Brightness;
-import net.sourceforge.jiu.color.adjustment.Contrast;
 import net.sourceforge.jiu.data.PixelImage;
 import net.sourceforge.jiu.gui.awt.BufferedRGB24Image;
 import net.sourceforge.jiu.gui.awt.ImageCreator;
 import net.sourceforge.jiu.ops.MissingParameterException;
 import net.sourceforge.jiu.ops.WrongParameterException;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -29,7 +24,7 @@ public class BrightnessPreProcessor extends PreProcessor {
 
     @Override
     public BufferedImage process(BufferedImage image) {
-
+        LoggerFactory.getLogger("ocr_analyse").info("change brightness: " + getValue());
         BufferedRGB24Image bufferedRGB24Image = new BufferedRGB24Image(image);
 
         int scalefactor = (int) getValue();

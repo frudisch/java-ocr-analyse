@@ -1,5 +1,7 @@
 package preprocessing;
 
+import org.slf4j.LoggerFactory;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,6 +19,8 @@ public class RotatePreProcessor extends PreProcessor {
 
     @Override
     public BufferedImage process(BufferedImage image) {
+        LoggerFactory.getLogger("ocr_analyse").info("rotating: " + getValue());
+
         double angle = getValue();
         double sin = Math.abs(Math.sin(Math.toRadians(angle)));
         double cos = Math.abs(Math.cos(Math.toRadians(angle)));
