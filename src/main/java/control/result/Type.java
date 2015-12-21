@@ -5,5 +5,5 @@ package control.result;
  */
 public enum Type {
 
-    TEXT, IMAGE, META
+    TEXT, IMAGE, META, PAGEBREAK
 }
