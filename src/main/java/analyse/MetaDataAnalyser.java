@@ -31,6 +31,11 @@ public class MetaDataAnalyser implements Analyser<MetaData> {
         return process(result);
     }
 
+    @Override
+    public void setValue(String val) {
+
+    }
+
     private MetaData process(String result) {
         MetaData md = new MetaData();
 

@@ -25,4 +25,9 @@ public class ImageExtractor implements Analyser<BufferedImage> {
                 (int) rectangle.getWidth(),
                 (int) rectangle.getHeight());
     }
+
+    @Override
+    public void setValue(String val) {
+
+    }
 }

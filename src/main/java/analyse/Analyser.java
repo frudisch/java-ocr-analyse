@@ -9,4 +9,6 @@ import java.awt.image.BufferedImage;
 public interface Analyser <T> {
 
     T analyse(BufferedImage image, Rectangle rectangle);
+
+    void setValue(String val);
 }
