@@ -2,10 +2,7 @@ package analyse;
 
 import ch.qos.logback.classic.Logger;
 import control.result.Result;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.Tesseract1;
-import net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.*;
 import net.sourceforge.tess4j.util.LoadLibs;
 import org.slf4j.LoggerFactory;
 
@@ -28,13 +25,14 @@ public class OCRAnalyser implements Analyser<String>{
     int i = 0;
 
     public OCRAnalyser(){
-        tesseract = new Tesseract1();
+        tesseract = new Tesseract();
 
         //In case you don't have your own tessdata, let it also be extracted for you
         File tessDataFolder = LoadLibs.extractTessResources("tessdata");
 
         //Set the tessdata path
         tesseract.setDatapath(tessDataFolder.getAbsolutePath());
+        tesseract.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_BLOCK);
     }
 
     @Override
