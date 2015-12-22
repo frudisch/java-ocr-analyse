@@ -5,6 +5,7 @@ import control.result.Result;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.util.LoadLibs;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,13 @@ public class OCRAnalyser implements Analyser<String>{
     int i = 0;
 
     public OCRAnalyser(){
-        tesseract = Tesseract.getInstance();
+        tesseract = new Tesseract();
+
+        //In case you don't have your own tessdata, let it also be extracted for you
+        File tessDataFolder = LoadLibs.extractTessResources("tessdata");
+
+        //Set the tessdata path
+        tesseract.setDatapath(tessDataFolder.getAbsolutePath());
     }
 
     @Override
