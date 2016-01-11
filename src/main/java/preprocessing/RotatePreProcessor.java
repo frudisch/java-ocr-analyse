@@ -17,6 +17,11 @@ public class RotatePreProcessor extends PreProcessor {
         super(ranking);
     }
 
+    /**
+     * rotiert das bild um den in der value angegeben wert und gibt es zurück
+     * @param image zu verarbeitendes bild
+     * @return verarbeitetes bild
+     */
     @Override
     public BufferedImage process(BufferedImage image) {
         LoggerFactory.getLogger("ocr_analyse").info("rotating: " + getValue());

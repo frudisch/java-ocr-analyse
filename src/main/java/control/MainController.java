@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+ * controller der den workflow stuert
  * Created by FRudi on 06.11.2015.
  */
 public class MainController {
@@ -36,6 +37,7 @@ public class MainController {
 
     }
 
+    @Deprecated
     public List<IIOImage> getIIOImageList(BufferedImage bi) throws IOException {
         List<IIOImage> iioImageList = new ArrayList<IIOImage>();
         IIOImage oimage = new IIOImage(bi, null, null);
@@ -43,6 +45,13 @@ public class MainController {
         return iioImageList;
     }
 
+    /**
+     * analysiert das Bild mit den übergebenen configurationen
+     * wenn keine konfiguration oder keine rechtecke zur analyse vorhanden sind, wird das komplette bild analysiert
+     * @param image zu analysierende bild
+     * @param configuration configuration für die analyse
+     * @return ergebnis der analyse
+     */
     public Result analyse (BufferedImage image, LayoutConfiguration configuration) {
         Result rc = new Result();
 /*

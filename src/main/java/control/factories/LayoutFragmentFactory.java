@@ -4,6 +4,7 @@ import analyse.AnalyseType;
 import control.configuration.LayoutFragment;
 
 /**
+ * Fabrik zur erstellung eines layout fragments
  * Created by florian on 05.12.15.
  */
 public class LayoutFragmentFactory {

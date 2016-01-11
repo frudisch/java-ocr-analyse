@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 /**
+ * wird nicht benutzt
  * Created by FRudi on 07.11.2015.
  */
 public class LanguageTool extends PostProcessor{

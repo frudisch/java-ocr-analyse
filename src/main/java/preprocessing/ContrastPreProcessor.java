@@ -22,6 +22,11 @@ public class ContrastPreProcessor extends PreProcessor {
         super(ranking);
     }
 
+    /**
+     * erhöht oder verringert den kontrast des übergebenen bildes um den in der value angegeben wert und gibt das bearbeitete bild zurück
+     * @param image zu bearbeitendes bild
+     * @return bearbeitetes bild
+     */
     @Override
     public BufferedImage process(BufferedImage image) {
         LoggerFactory.getLogger("ocr_analyse").info("change contrast: " + getValue());

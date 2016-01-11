@@ -3,6 +3,8 @@ package control.configuration;
 import analyse.AnalyseType;
 
 /**
+ * einzelnes fragment für die analyse des bildes
+ * dafür wird der linke obere punkt, der rechte untere punkt und der typ der analyse gespeichert
  * Created by FRudi on 20.11.2015.
  */
 public class LayoutFragment {

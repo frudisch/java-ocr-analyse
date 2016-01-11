@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+ * Fabrik für das erstellen einer layout configuration
  * Created by florian on 05.12.15.
  */
 public class LayoutConfigurationFactory {
@@ -19,6 +20,10 @@ public class LayoutConfigurationFactory {
     private List<PreProcessor> preProcessors = new ArrayList<>();
     private List<PostProcessor> postProcessors = new ArrayList<>();
 
+    /**
+     * setzt die vorher übergebenen fragmente, preprocessoren und postprocessoren und gibt die erstellte configuration zurück
+     * @return
+     */
     public LayoutConfiguration build(){
         configuration.setFragments(fragmentList);
         configuration.setPreProcessors(preProcessors);

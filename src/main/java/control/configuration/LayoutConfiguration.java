@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+ * Layout konfiguration für die analyse eines Bildes
  * Created by FRudi on 20.11.2015.
  */
 public class LayoutConfiguration {

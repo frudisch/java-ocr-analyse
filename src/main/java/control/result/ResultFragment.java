@@ -3,6 +3,7 @@ package control.result;
 import analyse.AnalyseType;
 
 /**
+ * einzelnes ergebnis fragment
  * Created by FRudi on 20.11.2015.
  */
 public class ResultFragment<T> {
