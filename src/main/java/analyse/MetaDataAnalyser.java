@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by florian on 23.11.15.
  */
+@Deprecated
 public class MetaDataAnalyser implements Analyser<MetaData> {
 
     private OCRAnalyser ocrAnalyser;

@@ -35,11 +35,22 @@ public class OCRAnalyser implements Analyser<String>{
         tesseract.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_BLOCK);
     }
 
+    /**
+     *
+     * @param val
+     */
     @Override
     public void setValue(String val) {
         tesseract.setLanguage(val);
     }
 
+    /**
+     * extrahiert das bild aus dem definierten bereich mittels des ImageExtractor und analysiert
+     * danach das ausgeschnittene bild mittels Tesseract und gibt den gefundenen text zurück
+     * @param image zu analysierendes Bild
+     * @param rectangle zu analysierender Bereich
+     * @return im bild gefundener text
+     */
     @Override
     public String analyse(BufferedImage image, Rectangle rectangle) {
         BufferedImage cutImage = new ImageExtractor().analyse(image, rectangle);

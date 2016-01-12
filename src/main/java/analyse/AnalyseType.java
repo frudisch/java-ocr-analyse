@@ -1,6 +1,7 @@
 package analyse;
 
 /**
+ * liste der analyser, die das system bereitstellt
  * Created by florian on 23.11.15.
  */
 public class AnalyseType {
