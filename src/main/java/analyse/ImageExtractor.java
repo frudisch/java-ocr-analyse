@@ -15,7 +15,7 @@ import java.io.IOException;
 public class ImageExtractor implements Analyser<BufferedImage> {
 
     /**
-     * extrahiert den durch das übergebene rectangle definierte bereich aus dem bild und liefert ihn als bild zurück
+     * extrahiert den durch das übergebene rectangle definierte bereich aus dem bild und liefert dieses als bild zurück
      * @param image zu analysierendes Bild
      * @param rectangle zu analysierender Bereich
      * @return bildausschnitt
@@ -36,5 +36,24 @@ public class ImageExtractor implements Analyser<BufferedImage> {
     @Override
     public void setValue(String val) {
 
+    }
+
+    public static void main(String[] args) {
+        BufferedImage image = null;
+        Rectangle rectangle = new Rectangle();
+
+        rectangle.setBounds(100, 100, 100, 100);
+
+        try {
+            image = ImageIO.read(new File("./src/main/resources/test_files/test_300_dpi.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ImageIO.write(new ImageExtractor().analyse(image, rectangle), "png", new File("./src/main/resources/test_files/cut_image_test_result.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

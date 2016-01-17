@@ -17,5 +17,6 @@ unmanagedJars in Compile := (baseDirectory.value ** "*.jar").classpath
 libraryDependencies ++= Seq(
   "org.languagetool" % "language-en" % "3.1",
   "net.sourceforge.tess4j" % "tess4j" % "2.0.1",
-  "ch.qos.logback" % "logback-classic" % "1.1.3"
+  "ch.qos.logback" % "logback-classic" % "1.1.3",
+  "junit" % "junit" % "4.12"
 )

@@ -56,12 +56,12 @@ public class ContrastPreProcessor extends PreProcessor {
     public static void main(String[] args){
         PreProcessor test = PreProcessingType.INCREASE_CONTRAST;
 
-        test.setValue(52.0);
+        test.setValue(60.0);
 
         try {
             BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/test_300_dpi.jpg")));
 
-            ImageIO.write(rc, "png", new File("./src/main/resources/test_files/output.png"));
+            ImageIO.write(rc, "png", new File("./src/main/resources/test_files/contrast_image_test_result.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
