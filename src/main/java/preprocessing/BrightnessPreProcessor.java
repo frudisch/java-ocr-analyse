@@ -59,7 +59,7 @@ public class BrightnessPreProcessor extends PreProcessor {
         test.setValue(-60.0);
 
         try {
-            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/input.png")));
+            BufferedImage rc = test.process(ImageIO.read(new File("./src/main/resources/test_files/test_300_dpi.jpg")));
 
             ImageIO.write(rc, "png", new File("./src/main/resources/test_files/brightness_image_test_result.png"));
         } catch (IOException e) {
