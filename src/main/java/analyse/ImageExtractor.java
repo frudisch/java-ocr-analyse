@@ -42,7 +42,7 @@ public class ImageExtractor implements Analyser<BufferedImage> {
         BufferedImage image = null;
         Rectangle rectangle = new Rectangle();
 
-        rectangle.setBounds(100, 100, 100, 100);
+        rectangle.setBounds(100, 100, 2000, 2000);
 
         try {
             image = ImageIO.read(new File("./src/main/resources/test_files/test_300_dpi.jpg"));
